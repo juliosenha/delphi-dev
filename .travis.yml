@@ -6,14 +6,14 @@ env:
   - VERSION=20
 
 install:
-  - docker login -u "$USER_DOCKER_HUB" -p "$PASSWORD_DOCKER_HUB"
+  - docker login -u $USER_DOCKER_HUB -p $PASSWORD_DOCKER_HUB
 
 before_script:
   - env | sort
-  - image="hashload/delphi-dev:${VERSION}"
+  - IMAGE="hashload/delphi-dev:${VERSION}"
 
 script:
-  - docker build -t $image .
+  - docker build -t $IMAGE .
     
 after_script:
-  - docker push $image
+  - docker push $IMAGE
