@@ -9,9 +9,8 @@ install:
   - docker login -u $USER_DOCKER_HUB -p $PASSWORD_DOCKER_HUB
 
 before_script:
-  - env | sort
   - cd $VERSION
-  - IMAGE="hashload/delphi-dev:${VERSION}"
+  - IMAGE="hashload/delphi-dev:$VERSION"
 
 script:
   - docker build -t $IMAGE .
