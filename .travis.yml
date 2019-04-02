@@ -10,6 +10,7 @@ install:
 
 before_script:
   - env | sort
+  - cd $VERSION
   - IMAGE="hashload/delphi-dev:${VERSION}"
 
 script:
