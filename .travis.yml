@@ -1,0 +1,19 @@
+language: bash
+services: docker
+
+env:
+  - VERSION=19
+  - VERSION=20
+
+install:
+  - echo "install - 1"
+
+before_script:
+  - env | sort
+  - image="hashload/delphi-dev:${VERSION}"
+
+script:
+  - echo $image
+    
+after_script:
+  - docker images
