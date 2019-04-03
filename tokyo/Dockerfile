@@ -5,6 +5,7 @@ ENV VERSION_NAME=tokyo
 
 RUN apt-get -y update \
     && apt-get -y install \
+    wget \
     curl \
     unzip \
     build-essential \
@@ -14,11 +15,14 @@ RUN apt-get -y update \
     xterm \
     && apt-get -y autoremove \
     && apt-get -y autoclean
-RUN wget https://github.com/HashLoad/delphi-dev/releases/download/${VERSION_NAME}/paserver_19.tar.gz\
-    && tar -xzvf paserver_${VERSION_NUMBER}.tar.gz
-RUN wget https://github.com/HashLoad/delphi-dev/releases/download/${VERSION_NAME}/LinuxEMSServer.tar . \ 
-    && wget https://github.com/HashLoad/delphi-dev/releases/download/${VERSION_NAME}/ems_install.sh . \
-    && ./ems_install.sh
+RUN wget https://github.com/HashLoad/delphi-dev/releases/download/${VERSION_NAME}/paserver_${VERSION_NUMBER}.tar.gz \
+    && tar -xzvf paserver_$VERSION_NUMBER.tar.gz \
+    && rm paserver_$VERSION_NUMBER.tar.gz
+RUN wget https://github.com/HashLoad/delphi-dev/releases/download/${VERSION_NAME}/LinuxEMSServer.tar \
+    https://github.com/HashLoad/delphi-dev/releases/download/${VERSION_NAME}/ems_install.sh \
+    && chmod +x ./ems_install.sh \
+    && ./ems_install.sh \
+    && rm LinuxEMSServer.tar ems_install.sh
 
 WORKDIR /paserver
 
