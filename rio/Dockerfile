@@ -1,8 +1,7 @@
 FROM ubuntu:16.04
 
-ENV VERSION=20
-
-COPY paserver_$VERSION.tar.gz .
+ENV VERSION_NUMBER=20
+ENV VERSION_NAME=rio
 
 RUN apt-get -y update \
     && apt-get -y install \
@@ -15,7 +14,11 @@ RUN apt-get -y update \
     xterm \
     && apt-get -y autoremove \
     && apt-get -y autoclean
-RUN tar -xzvf paserver_$VERSION.tar.gz
+RUN wget https://github.com/HashLoad/delphi-dev/releases/download/${VERSION_NAME}/paserver_19.tar.gz\
+    && tar -xzvf paserver_${VERSION_NUMBER}.tar.gz
+RUN wget https://github.com/HashLoad/delphi-dev/releases/download/${VERSION_NAME}/LinuxEMSServer.tar . \ 
+    && wget https://github.com/HashLoad/delphi-dev/releases/download/${VERSION_NAME}/ems_install.sh . \
+    && ./ems_install.sh
 
 WORKDIR /paserver
 
