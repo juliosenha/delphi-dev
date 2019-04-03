@@ -20,7 +20,6 @@ RUN wget https://github.com/HashLoad/delphi-dev/releases/download/${VERSION_NAME
     && tar -xzvf paserver_$VERSION_NUMBER.tar.gz \
     && rm paserver_$VERSION_NUMBER.tar.gz
 RUN echo "INTERBASE=/opt/interbase" >> /etc/environment \
-    && source /etc/environment \
     && wget -P $INTERBASE/lib https://github.com/HashLoad/delphi-dev/releases/download/${VERSION_NAME}/libgds.so \
     && chmod 755 $INTERBASE/lib/libgds.so \
     && cp $INTERBASE/lib/libgds.so /usr/lib/
