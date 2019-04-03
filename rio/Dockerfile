@@ -18,6 +18,8 @@ RUN apt-get -y update \
 RUN wget https://github.com/HashLoad/delphi-dev/releases/download/${VERSION_NAME}/paserver_${VERSION_NUMBER}.tar.gz \
     && tar -xzvf paserver_$VERSION_NUMBER.tar.gz \
     && rm paserver_$VERSION_NUMBER.tar.gz
+RUN wget https://github.com/HashLoad/delphi-dev/releases/download/${VERSION_NAME}/interbase-lib.zip \
+    && unzip interbase-lib.zip -d /usr/lib/x86_64-linux-gnu/
 RUN wget https://github.com/HashLoad/delphi-dev/releases/download/${VERSION_NAME}/LinuxEMSServer.tar \
     https://github.com/HashLoad/delphi-dev/releases/download/${VERSION_NAME}/ems_install.sh \
     && chmod +x ./ems_install.sh \
